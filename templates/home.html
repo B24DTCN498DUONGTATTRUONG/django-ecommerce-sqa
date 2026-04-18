@@ -1,3 +1,4 @@
+{% load static %}
 {% extends "base.html" %}
 
 {% block content %}
@@ -62,7 +63,11 @@
 
               <div class="view overlay">
                 {% comment %} <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top" {% endcomment %}
-                <img src="{{ item.image.url }}" class="card-img-top">
+                {% if item.image %}
+                  <img src="{{ item.image.url }}" class="card-img-top">
+                {% else %}
+                  <img src="{% static 'img/default.png' %}" class="card-img-top">
+                {% endif %}
                 <a href="{{ item.get_absolute_url }}">
                   <div class="mask rgba-white-slight"></div>
                 </a>
