@@ -346,9 +346,11 @@ class PaymentView(View):
 
 
 class HomeView(ListView):
-    model = Item
     paginate_by = 10
     template_name = "home.html"
+
+    def get_queryset(self):
+        return Item.objects.all().order_by('-id')
 
 
 class OrderSummaryView(LoginRequiredMixin, View):
