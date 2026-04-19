@@ -139,3 +139,22 @@ cython_debug/
 
 static_root
 media_rootdesktop.ini
+
+# Windows
+desktop.ini
+
+# Media (ảnh upload runtime)
+media_root/
+
+# Python
+venv/
+__pycache__/
+
+# Static collected
+static_root/
+
+desktop.ini
+media_root/
+static_root/
+venv/
+__pycache__/
