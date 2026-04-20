@@ -40,7 +40,7 @@ class Item(models.Model):
     discount_price = models.FloatField(blank=True, null=True)
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=2)
     label = models.CharField(choices=LABEL_CHOICES, max_length=1)
-    slug = models.SlugField()
+    slug = models.SlugField(unique=True)
     description = models.TextField()
     image = models.ImageField()
 
@@ -184,3 +184,10 @@ def userprofile_receiver(sender, instance, created, *args, **kwargs):
 
 
 post_save.connect(userprofile_receiver, sender=settings.AUTH_USER_MODEL)
+
+class ItemImage(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='images')
+    image = models.ImageField(upload_to='products/')
+
+    def __str__(self):
+        return self.item.title

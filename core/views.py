@@ -346,8 +346,11 @@ class PaymentView(View):
 
 
 class HomeView(ListView):
-    paginate_by = 10
+    model = Item
     template_name = "home.html"
+    context_object_name = 'object_list'
+    paginate_by = 10
+    ordering = ['-id']
 
     def get_queryset(self):
         return Item.objects.all().order_by('-id')
